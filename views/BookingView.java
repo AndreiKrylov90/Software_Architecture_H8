@@ -32,8 +32,11 @@ public class BookingView implements View {
             System.out.println("Не удалось забронировать столик. Повторите попытку позже.");
 
     }
-
+    // Новый метод для изменения бронирования - отменяет старое бронирование и создает новое
     public void changeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name){
+        deleteReservationTable(oldReservation);
+
+        reservationTable(reservationDate, tableNo, name);
     }
 
 
@@ -41,6 +44,13 @@ public class BookingView implements View {
     public void reservationTable(Date orderDate, int tableNo, String name){
         for (ViewObserver observer : observers){
             observer.onReservationTable(orderDate, tableNo, name);
+        }
+    }
+
+    // Новый метод, который просто удаляет старую запись в случае простой отмены
+    public void deleteReservationTable(int oldReservation){
+        for (ViewObserver observer : observers){
+            observer.deleteReservationTable(oldReservation);
         }
     }
 

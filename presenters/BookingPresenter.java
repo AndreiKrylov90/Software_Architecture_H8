@@ -26,10 +26,17 @@ public class BookingPresenter implements ViewObserver {
     public void onReservationTable(Date orderDate, int tableNo, String name) {
         try {
             int reservationNo = model.reservationTable(orderDate, tableNo, name);
+            System.out.println("Ваш столик номер: " + tableNo);
             updateUIReservationTableResult(reservationNo);
         }
         catch (Exception e){
             updateUIReservationTableResult(-1);
         }
+    }
+
+    // Новый метод для удаления записи
+    @Override
+    public void deleteReservationTable(int oldReservation) {
+        model.deleteReservationTable(oldReservation);
     }
 }

@@ -10,5 +10,8 @@ public interface Model {
     Collection<Table> loadTables();
 
     int reservationTable(Date reservationDate, int tableNo, String name);
+    
+    // Новый метод для удаления записи
+    void deleteReservationTable(int oldReservation);
 
 }
